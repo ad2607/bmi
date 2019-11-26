@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BMICalculator", "BMICalculator\BMICalculator.csproj", "{C03AECFD-4B9F-41AC-8D8E-D357D51A4095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMIUnitTestProject", "BMIUnitTestProject\BMIUnitTestProject.csproj", "{956B93FF-8926-4490-9D30-C10FBD411859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BMIUnitTestProject", "BMIUnitTestProject\BMIUnitTestProject.csproj", "{956B93FF-8926-4490-9D30-C10FBD411859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -33,6 +33,12 @@
                 <span asp-validation-for="BMI.HeightInches" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <select asp-for="BMI.Gender" asp-items="Html.GetEnumSelectList<Gender>()">
+                    <option value="">Select Gender</option>
+                </select>
+        
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Calculate" class="btn btn-default" />
             </div>
             @if (Request.Method == "POST")
@@ -44,6 +50,10 @@
                 <div>
                     @Html.DisplayNameFor(m => m.BMI.BMICategory)
                     @Html.DisplayFor(m => m.BMI.BMICategory)
+                </div>
+                <div>
+                    @Html.DisplayNameFor(m => m.BMI.CalorieIntake)
+                    @Html.DisplayFor(m => m.BMI.CalorieIntake)
                 </div>
             }
         </form>

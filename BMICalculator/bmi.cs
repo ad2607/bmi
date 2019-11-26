@@ -8,9 +8,13 @@ using System.ComponentModel.DataAnnotations;
 namespace BMICalculator
 {
     public enum BMICategory { Underweight, Normal, Overweight, Obese };
+    public enum Gender { Male, Female};
 
     public class BMI
     {
+        const double HealthyLower = 18;
+        const double HealthyHigher = 25;
+
         const double UnderWeightUpperLimit = 18.4;              // inclusive upper limit
         const double NormalWeightUpperLimit = 24.9;
         const double OverWeightUpperLimit = 29.9;               // Obese from 30 +
@@ -35,6 +39,9 @@ namespace BMICalculator
         [Range(0, 11, ErrorMessage = "Inches must be between 0 and 11")]                              // 12 inches in a foot
         public int HeightInches { get; set; }
 
+        [Display(Name = "Gender")]                          
+        public Gender Gender { get; set; }
+
         // calculate BMI, display to 2 decimal places
         [Display(Name = "Your BMI is")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
@@ -52,6 +59,7 @@ namespace BMICalculator
                 double totalHeightInMetres = totalHeightInInches * InchestoMetres;
 
                 double bmi = totalWeightInKgs / (Math.Pow(totalHeightInMetres, 2));
+                
 
                 return bmi;
             }
@@ -64,6 +72,7 @@ namespace BMICalculator
             get
             {
                 double bmi = this.BMIValue;
+                
 
                 // calculate BMI category based on upper limits
                 if (bmi <= UnderWeightUpperLimit)
@@ -83,6 +92,25 @@ namespace BMICalculator
                     return BMICategory.Obese;
                 }
             }
+        }
+        [Display(Name = "Recommended calorie intake: ")]
+        public String CalorieIntake
+        {
+            get
+            {
+
+                if (Gender == Gender.Male)
+                {
+                    return "2000 calories a day will cause a loss of 1 pound a week ";
+
+                }else 
+                {
+                    return "1500 calories a day will cause a loss of 1 pound a week";
+                }
+            }
+
+
+
         }
     }
 }
