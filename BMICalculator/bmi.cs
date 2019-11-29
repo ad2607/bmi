@@ -57,8 +57,10 @@ namespace BMICalculator
                 // do conversions to metric
                 double totalWeightInKgs = totalWeightInPounds * PoundsToKgs;
                 double totalHeightInMetres = totalHeightInInches * InchestoMetres;
+               
 
                 double bmi = totalWeightInKgs / (Math.Pow(totalHeightInMetres, 2));
+                
                 
 
                 return bmi;
@@ -98,15 +100,56 @@ namespace BMICalculator
         {
             get
             {
+                double bmi = this.BMIValue;
+                double totalWeightInPounds = (WeightStones * 14) + WeightPounds;
+                double totalHeightInInches = (HeightFeet * 12) + HeightInches;
+
+                // do conversions to metric
+                double totalWeightInKgs = totalWeightInPounds * PoundsToKgs;
+                double totalHeightInMetres = totalHeightInInches * InchestoMetres;
+                double loose =0;
 
                 if (Gender == Gender.Male)
                 {
-                    return "2000 calories a day will cause a loss of 1 pound a week ";
+                    if (bmi >= OverWeightUpperLimit)
+                    {
+                        loose = bmi - NormalWeightUpperLimit;
+                        loose = Math.Sqrt(loose) * totalWeightInKgs;
+                        return $"2000 calories a day will cause a loss of 1 pound a week, you need too loose {loose} to get to a Normal BMI";
+                    }
+                    if (bmi <= NormalWeightUpperLimit){
+                        loose = NormalWeightUpperLimit - bmi;
+                        loose = Math.Sqrt(loose) * totalWeightInKgs;
+                        return $"2200 calories a day will cause a gain of 1 pound a week, you need too gain {loose} to get to a Normal BMI";
+
+                    }else if (bmi == NormalWeightUpperLimit)
+                    {
+                        return "You are at a healthy bmi";
+                    }
 
                 }else 
                 {
-                    return "1500 calories a day will cause a loss of 1 pound a week";
+                    if (bmi >= OverWeightUpperLimit)
+                    {
+                        loose = bmi - NormalWeightUpperLimit;
+                        loose = Math.Sqrt(loose) * totalWeightInKgs;
+                        return $"1500 calories a day will cause a loss of 1 pound a week, you need too loose {loose} to get to a Normal BMI";
+                    }
+                    if (bmi <= NormalWeightUpperLimit)
+                    {
+                        loose = NormalWeightUpperLimit - bmi;
+                        loose = Math.Sqrt(loose) * totalWeightInKgs;
+                        return $"2000 calories a day will cause a gain of 1 pound a week, you need too gain {loose} to get to a Normal BMI";
+
+                    }
+                    else if (bmi == NormalWeightUpperLimit)
+                    {
+                        return "You are at a healthy bmi";
+                    }
+
+                    
                 }
+                return null;
             }
 
 
